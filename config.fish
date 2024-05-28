@@ -1,7 +1,9 @@
 set -g fish_greeting ""
 set -U fish_color_command '#aaa'
 
-command /etc/rc.local
+command picom &
+command feh --bg-scale ~/walpaper.jpg
+command pactl set-sink-volume @DEFAULT_SINK@ 100%
 
 function fish_prompt
     set_color '#11cc33'
