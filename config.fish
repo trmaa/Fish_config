@@ -1,6 +1,8 @@
 set -g fish_greeting ""
 set -U fish_color_command '#aaa'
 
+command /etc/rc.local
+
 function fish_prompt
     set_color '#11cc33'
     echo -n '[Admin@admin'
