@@ -1,9 +1,10 @@
 set -g fish_greeting ""
 set -U fish_color_command '#aaa'
 
-command picom &
-command feh --bg-scale ~/walpaper.jpg
-command pactl set-sink-volume @DEFAULT_SINK@ 100%
+picom --config ~/.config/picom/picom.conf &
+feh --bg-scale ~/walpaper.jpg &
+pactl set-sink-volume @DEFAULT_SINK@ 100%
+clear
 
 function fish_prompt
     set_color '#11cc33'
@@ -25,7 +26,7 @@ function fish_prompt
             echo -n ''
         end
 
-        echo -n ') '
+        echo -n ')'
     end
 
     set_color '#fff'
