@@ -48,21 +48,23 @@ function fish_prompt
     echo
 
     set hourAmPM (LC_TIME=en_US.UTF-8 date +"%I:%M %p")
+
+    echo -n " "
     set_color '#aaa'
-    echo -n " ┌─"
+    echo -n "┌─"
     
     set_color "#aaa"
     echo -n "["
     
     # Get the full hostname (FQDN used for SSH)
     set computerName (hostname -f)
-    set_color '#ffccff'
+    set_color '#ffaacc'
     echo -n "pablo"
-    set_color '#ff77ff'
+    set_color '#ff77aa'
     echo -n "@"$computerName":"
     
     set_color '#2B7'
-    echo -n " "(prompt_pwd)
+    echo -n ""(prompt_pwd)
     set_color "#aaa"
     echo -n "]"
     
@@ -87,9 +89,10 @@ function fish_prompt
     end
 
     echo
-    
+
+    echo -n " "    
     set_color '#aaa'
-    echo -n ' └─'
+    echo -n '└─'
     set_color '#fff'
     echo -n '$ '
 end
