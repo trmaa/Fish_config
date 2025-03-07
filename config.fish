@@ -1,3 +1,18 @@
+# Put system-wide fish configuration entries here
+# or in .fish files in conf.d/
+# Files in conf.d can be overridden by the user
+# by files with the same name in $XDG_CONFIG_HOME/fish/conf.d
+
+# This file is run by all fish instances.
+# To include configuration only for login shells, use
+# if status is-login
+#    ...
+# end
+# To include configuration only for interactive shells, use
+# if status is-interactive
+#   ...
+# end
+
 # Disable greeting
 set -g fish_greeting ""
 
@@ -5,9 +20,11 @@ set -g fish_greeting ""
 set -U fish_color_command '#aaa'
 
 # Startup commands
+~/Dwm_config/sss/slstatus &
 picom --config ~/.config/picom/picom.conf &
-~/commands/walpaper.sh
+~/commands/wallpaper.sh
 ~/commands/volume.sh
+xrandr -s 1920x1080
 clear
 clear
 clear
@@ -36,7 +53,8 @@ clear
 clear
 clear
 clear
-#neofetch
+neofetch
+
 #command gsettings set org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:$(gsettings get org.gnome.Terminal.ProfilesList default)/ font-size 20
 
 #PS1='\[\e[1:32m\][Admin@admin \e[1:33m\]\w\e[32m\]] \e[1:0m\]$ '
@@ -49,24 +67,10 @@ function fish_prompt
 
     set hourAmPM (LC_TIME=en_US.UTF-8 date +"%I:%M %p")
 
-    echo -n " "
-    set_color '#aaa'
-    echo -n "┌─"
-    
-    set_color "#aaa"
-    echo -n "["
-    
-    # Get the full hostname (FQDN used for SSH)
-    set computerName (hostname -f)
-    set_color '#ffaacc'
-    echo -n "pablo"
-    set_color '#ff77aa'
-    echo -n "@"$computerName":"
-    
+    echo -n " "    
     set_color '#2B7'
     echo -n ""(prompt_pwd)
     set_color "#aaa"
-    echo -n "]"
     
     set_color "#f77"
     echo -n " "$hourAmPM
@@ -91,8 +95,6 @@ function fish_prompt
     echo
 
     echo -n " "    
-    set_color '#aaa'
-    echo -n '└─'
     set_color '#fff'
     echo -n '$ '
 end
