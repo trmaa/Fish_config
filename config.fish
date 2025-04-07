@@ -1,59 +1,40 @@
-# Put system-wide fish configuration entries here
-# or in .fish files in conf.d/
-# Files in conf.d can be overridden by the user
-# by files with the same name in $XDG_CONFIG_HOME/fish/conf.d
-
-# This file is run by all fish instances.
-# To include configuration only for login shells, use
-# if status is-login
-#    ...
-# end
-# To include configuration only for interactive shells, use
-# if status is-interactive
-#   ...
-# end
-
-# Disable greeting
 set -g fish_greeting ""
-
-# Command color
 set -U fish_color_command '#aaa'
 
-# Startup commands
-~/Dwm_config/sss/slstatus &
-picom --config ~/.config/picom/picom.conf &
-~/commands/wallpaper.sh
-~/commands/volume.sh
+if not pgrep -x picom > /dev/null
+    picom --config ~/.config/picom/picom.conf > /dev/null 2>&1 &
+end
+
+if not pgrep -x slstatus > /dev/null
+    ~/Dwm_config/sss/slstatus > /dev/null 2>&1 &
+end
+
+wallpaper > /dev/null 2>&1 &
+clear
+clear
+clear
+clear
+clear
+clear
+clear
+clear
+clear
+clear
+clear
+clear
+clear
+clear
+clear
+clear
+clear
+clear
+clear
+clear
+
 xrandr -s 1920x1080
-clear
-clear
-clear
-clear
-clear
-clear
-clear
-clear
-clear
-clear
-clear
-clear
-clear
-clear
-clear
-clear
-clear
-clear
-clear
-clear
-clear
-clear
-clear
-clear
-clear
-clear
-clear
-clear
-neofetch
+
+#neofetch --disable gpu resolution de wm
+fastfetch
 
 #command gsettings set org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:$(gsettings get org.gnome.Terminal.ProfilesList default)/ font-size 20
 
@@ -63,18 +44,29 @@ neofetch
 
 # Custom prompt
 function fish_prompt
+    set complex false 
+
     echo
 
     set hourAmPM (LC_TIME=en_US.UTF-8 date +"%I:%M %p")
+    set user (whoami)
 
-    echo -n " "    
-    set_color '#2B7'
-    echo -n ""(prompt_pwd)
-    set_color "#aaa"
+    echo -n " "
+    if $complex
+        set_color '#aaa'
+        echo -n "┌─["
+    end
+    set_color '#2B7'   # color for current directory
+    echo -n (prompt_pwd)
+    if $complex
+        set_color "#aaa"
+        echo -n "]"
+    end
     
-    set_color "#f77"
-    echo -n " "$hourAmPM
-    
+    # Uncomment if you want to show time
+    # set_color "#f55"
+    # echo -n " "$hourAmPM
+
     if git rev-parse --is-inside-work-tree >/dev/null 2>&1
         set branch (git symbolic-ref --short HEAD)
         set numberOfFilesUncommited (git status --porcelain | wc -l)
@@ -94,7 +86,11 @@ function fish_prompt
 
     echo
 
-    echo -n " "    
+    echo -n " "
+    if $complex
+        set_color "#aaa"
+        echo -n "└─"
+    end
     set_color '#fff'
     echo -n '$ '
 end
