@@ -34,7 +34,13 @@ clear
 xrandr -s 1920x1080
 
 #neofetch --disable gpu resolution de wm
-fastfetch
+
+
+
+																	#fastfetch
+
+
+
 
 #command gsettings set org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:$(gsettings get org.gnome.Terminal.ProfilesList default)/ font-size 20
 
@@ -64,8 +70,8 @@ function fish_prompt
     end
     
     # Uncomment if you want to show time
-    # set_color "#f55"
-    # echo -n " "$hourAmPM
+	#set_color "#f55"
+	#echo -n " "$hourAmPM
 
     if git rev-parse --is-inside-work-tree >/dev/null 2>&1
         set branch (git symbolic-ref --short HEAD)
